@@ -85,3 +85,36 @@ ggplot(NA_CO,
 
 
 
+###homework 3
+#question 1: Make a graph that communicates about emissions from any countries of your choice. 
+#Explain how you considered principles of visualization in making your graph.
+
+#making a df for Japan, South Korea, and China
+EA_CO <- datCO2 %>%
+  filter(Entity== "Japan"|
+           Entity== "South Korea"|Entity== "China")
+
+#making graph that shows CO2 emissions in east asia over time
+ggplot(EA_CO, 
+       aes(x = Year, y = CO2, color = Entity))+
+  geom_point(pch = 17)+ 
+  geom_line()+
+  labs(x="Year", y=expression(CO[2]))+
+  theme_classic()+
+  scale_color_manual(values = c("#D81B60","#34495E55", "#FFC107"))+ #color-blind friendly hues
+  annotate("text",
+           x = 1900,
+           y = 9750000000,
+           label = "CO2 Emissions in East Asia Over Time")
+
+
+#question 2: Make two graphs to present in your word document side by side 
+#Plot world CO2 emissions on one graph and world air temperature anomalies on the other graph.  
+
+
+ 
+
+
+
+
+

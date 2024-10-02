@@ -111,10 +111,41 @@ ggplot(EA_CO,
 #question 2: Make two graphs to present in your word document side by side 
 #Plot world CO2 emissions on one graph and world air temperature anomalies on the other graph.  
 
+#plot of world temp anomalies
+ggplot(dat_cc, 
+       aes(x = DayF, y = temperature_anomaly, fill = Entity))+
+  theme_light()+
+  geom_area(alpha = 0.5)+
+  labs(x="Day", y="Temperature", title = "World Temperature Anomalies")
 
- 
+#plot of CO2 emissions
+ggplot(datCO2, 
+       aes(x = Year, y = CO2))+
+  theme_light()+
+  geom_point(alpha = 0.3)+
+  labs(x="Year", y="CO2 Emissions", title = "World CO2 Emissions")
 
 
+#Question 3: Remake any graph from environmental data of your interest in our world in data.
+#link to article used: https://ourworldindata.org/crop-yields-climate-impact
+
+#read in data
+crops <- read.csv("/cloud/project/yields-key-staple-crops.csv")
+  
+#renaming chart titles
+colnames(crops)[3] <- "Year"
+colnames(crops)[4] <- "Wheat"
+colnames(crops)[5] <- "Maize"
+colnames(crops)[6] <- "Rice"
+colnames(crops)[7] <- "Soybeans"
+colnames(crops)
+
+#making chart
+ggplot(crops,
+       aes(x= Year, y= Wheat, fill = Entity))+
+  theme_classic()+
+  geom_area()+
+  labs(x = "Year", y = "Wheat")
 
 
 

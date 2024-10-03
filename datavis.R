@@ -127,25 +127,20 @@ ggplot(datCO2,
 
 
 #Question 3: Remake any graph from environmental data of your interest in our world in data.
-#link to article used: https://ourworldindata.org/crop-yields-climate-impact
+#link to article used: https://ourworldindata.org/elephant-populations
 
 #read in data
-crops <- read.csv("/cloud/project/yields-key-staple-crops.csv")
-  
-#renaming chart titles
-colnames(crops)[3] <- "Year"
-colnames(crops)[4] <- "Wheat"
-colnames(crops)[5] <- "Maize"
-colnames(crops)[6] <- "Rice"
-colnames(crops)[7] <- "Soybeans"
-colnames(crops)
+elephants <- read.csv("/cloud/project/african-elephants.csv")
 
-#making chart
-ggplot(crops,
-       aes(x= Year, y= Wheat, fill = Entity))+
+#make a df to only include "Africa"
+afr.elephants <- elephants %>%
+  filter(Entity == "Africa")
+
+#plot
+ggplot(afr.elephants,
+       aes(x = Year, y = Number.of.African.elephants, fill = Entity))+
   theme_classic()+
-  geom_area()+
-  labs(x = "Year", y = "Wheat")
-
-
-
+  geom_point()+ #i don't like this visualization but this was the only way to present it in ggplot
+  labs(x = "Year", y = "Number of Elephants in Africa", 
+       title = "Number of African Elephants Over Time")
+  
